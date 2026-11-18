@@ -92,6 +92,9 @@ Then click **Create bucket** at the bottom.
 
 ✅ A green banner says your bucket was created. **Write your bucket name down.** You need it for the rest of today.
 
+> ℹ️ You will also see two **red** messages: *"Insufficient permissions to apply Default Encryption"* and *"Insufficient permissions to list objects"*.
+> **Both are expected. Ignore them.** Your bucket is already encrypted (SSE-S3 is automatic), and you can't list objects until your bucket is registered.
+
 > ❌ **"Access Denied" when you click Create bucket?** Nothing was created, so fix it and click Create again:
 > - a tag key or value has a typo, a capital letter or an extra space, or
 > - `workshop-owner` is not **your** username, or
