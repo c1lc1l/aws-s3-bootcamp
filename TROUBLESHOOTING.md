@@ -7,7 +7,7 @@ Find your symptom, try the fix, and raise your hand if it still fails after **5 
 | Symptom | Fix |
 |---|---|
 | "Your authentication information is incorrect" | Username is `workshop-user-07` style: lowercase, hyphens, two-digit seat number. Retype the workshop password exactly; pasting can add a space. |
-| Sign-in page asks for an **email** | You are on the root-user page. Open the **sign-in URL from the instructor's slide**. |
+| Sign-in page asks for an **email** | You are on the root-user page. Open **https://freecil.signin.aws.amazon.com/console**, or choose **IAM user** and type the alias `freecil`. |
 | Signed in but it says someone else's username (top-right) | Sign out and sign in with **your own** username. Never use a classmate's account. |
 | Console Home shows "Access denied" boxes | Normal. Your account only has S3 permissions. |
 

@@ -9,14 +9,14 @@ By the end of this phase you can say:
 - [ ] My bucket allows **public read** through a bucket policy, and nothing more.
 - [ ] My HTML, CSS, JS and images load from the **Bucket website endpoint** in a private/incognito window.
 
-Have ready: your username, the sign-in URL and workshop password (on the instructor's slide), and the **contents** of your `site/` folder.
+Have ready: your username, the workshop password (on the instructor's slide), and the **contents** of your `site/` folder.
 Get them from your repository with **Code → Download ZIP → Extract**.
 
 ---
 
 ## Step 1 - Sign in
 
-Open the **sign-in URL** from the instructor's slide. Sign in as **your** username, for example `workshop-user-07`, with the workshop password.
+Open **https://freecil.signin.aws.amazon.com/console** (account alias `freecil`). Sign in as **your** username, for example `workshop-user-07`, with the workshop password.
 
 > 🔒 Everyone has the same password today, so **only ever use the username you were given.**
 > Signing in as a classmate is not allowed, and every action is logged under the username that did it.

@@ -13,13 +13,12 @@ By the end of this phase you can say:
 
 ## 1. Get your sign-in details
 
-The instructor shows these on the screen:
-
-| On the slide | Example | What it is |
+| What | Value | What it is |
 |---|---|---|
-| Sign-in URL | `https://<account>.signin.aws.amazon.com/console` | The special sign-in page for the workshop account |
-| IAM username | `workshop-user-07` | **Your** AWS username for today |
-| Password | *(shown by the instructor)* | The same workshop password for everyone |
+| Sign-in URL | **https://freecil.signin.aws.amazon.com/console** | The sign-in page for the workshop AWS account |
+| Account alias | **`freecil`** | The workshop account's name. Type it if the page asks for *Account ID or alias* |
+| IAM username | `workshop-user-07` *(the instructor gives you your number)* | **Your** AWS username for today |
+| Password | *(shown on the instructor's slide)* | The same workshop password for everyone |
 | Region | `ap-southeast-1` | Asia Pacific (Singapore) |
 
 > 🔒 **Use only the username you were given.** Everyone shares one password today, so the username is what tells AWS who you are.
@@ -28,9 +27,9 @@ The instructor shows these on the screen:
 
 ## 2. Sign in to the AWS Console
 
-1. Open the **Sign-in URL** from the slide in your browser (Chrome, Edge or Firefox).
+1. Open **https://freecil.signin.aws.amazon.com/console** in your browser (Chrome, Edge or Firefox).
    - Use this exact link. Do **not** go to aws.amazon.com and click "Sign in". That page is for root users.
-2. Check that **Account ID or alias** is already filled in.
+2. Check that **Account ID or alias** says `freecil`. If it's empty, type `freecil`.
 3. Type **your** IAM username, for example `workshop-user-07`.
 4. Type the **workshop password** exactly as the instructor shows it. It is case-sensitive.
 5. Click **Sign in**.
@@ -84,7 +83,7 @@ You will create your own copy on GitHub in Phase 2. For now, just look at the fi
 ## Stuck?
 
 - **"Your authentication information is incorrect"**: check the username (`workshop-user-07`: hyphens, two-digit seat number, all lowercase) and retype the password. Pasting can add a hidden space.
-- **The page asks for an email address**: you are on the root-user page. Use the sign-in URL from the slide.
+- **The page asks for an email address**: you are on the root-user page. Open https://freecil.signin.aws.amazon.com/console instead, or choose **IAM user** and type the alias `freecil`.
 - **Anything else**: raise your hand. More help: [TROUBLESHOOTING.md](../TROUBLESHOOTING.md).
 
 ➡️ Next: [Phase 2 - Git and GitHub](02-git-and-github.md)

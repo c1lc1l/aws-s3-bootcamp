@@ -19,7 +19,7 @@ No frameworks, no build tools, no prior AWS experience needed.
 
 **Your 30-second cheat sheet**
 
-- Sign in with the **sign-in URL on the instructor's slide** as **your** username, e.g. `workshop-user-07`, with the workshop password shown there.
+- Sign in at **https://freecil.signin.aws.amazon.com/console** (account alias **`freecil`**) as **your** username, e.g. `workshop-user-07`, with the workshop password on the instructor's slide.
 - Region: **Asia Pacific (Singapore) `ap-southeast-1`**. Nothing else works.
 - Bucket name: **any** valid, available name, e.g. `my-first-cloud-portfolio`. Lowercase, 3–63 characters.
 - No tags needed. Your new bucket works immediately. Open and change **only your own** bucket.
