@@ -1,6 +1,7 @@
 # Phase 5 - BONUS: automatic deployment with GitHub Actions (about 25 minutes)
 
-> ⭐ **Optional.** Finish Phase 4 first. Your core workshop is complete without this phase.
+> ⭐ **Optional, take-home.** No AWS keys are handed out at today's workshop, so you can't run this phase in the workshop account.
+> Read it now, and try it later in **your own** AWS account (Free Tier) with your own bucket. Your core workshop is complete without it.
 
 **Goal:** every time you commit to `main`, GitHub automatically uploads `site/` to your S3 bucket.
 
@@ -24,12 +25,12 @@ By the end of this phase you can say:
 
 ## What you need
 
-1. Your **CI/CD card** from a facilitator. Ask for it when you finish Phase 4. It holds an **access key ID** and a **secret access key**.
-2. Your **bucket name** from Phase 4.
+1. An **access key ID** and **secret access key** for an IAM user in **your own** AWS account that may only upload to your bucket (`s3:ListBucket`, `s3:PutObject`, `s3:DeleteObject`).
+2. Your **bucket name** (a website bucket in your own account, set up the same way as in Phase 4).
 3. Your GitHub repository from Phase 2. Its `site/` folder must contain your **latest** website, because the workflow uploads exactly what is in GitHub.
 
-> 🔒 Your CI/CD keys belong to a separate **deploy-only identity**. It cannot sign in to the Console, cannot create or change buckets,
-> and can only upload/delete files in the bucket that is **registered to your username** (its `workshop-owner` tag). It is switched off after the workshop.
+> 🔒 Use a separate **deploy-only** IAM user for the keys: no Console password and no permissions except uploading to that one bucket.
+> Delete the key when you're done experimenting.
 
 ---
 
@@ -41,8 +42,8 @@ In **your** repository: **Settings** (top tab) → left menu **Secrets and varia
 
 | Name (exactly) | Secret |
 |---|---|
-| `AWS_ACCESS_KEY_ID` | the access key ID from your CI/CD card (starts with `AKIA`) |
-| `AWS_SECRET_ACCESS_KEY` | the secret access key from your CI/CD card |
+| `AWS_ACCESS_KEY_ID` | the access key ID of your deploy-only IAM user (starts with `AKIA`) |
+| `AWS_SECRET_ACCESS_KEY` | the secret access key of that IAM user |
 
 **Variables** tab → **New repository variable**:
 
@@ -115,7 +116,7 @@ Open the failed step and read the red message:
 | `Variable S3_BUCKET is missing` | Created as a **secret** instead of a **variable** | Create it on the **Variables** tab |
 | `is not a bucket name` | You entered `s3://…`, a URL, or a space | Enter only the bucket name |
 | `InvalidClientTokenId` / `SignatureDoesNotMatch` | Key ID or secret pasted wrongly (extra space, swapped) | Delete and re-create both secrets carefully |
-| `AccessDenied` on `ListObjectsV2` or `PutObject` | `S3_BUCKET` is not **your registered** bucket: a typo, a classmate's bucket, or a bucket that was never registered | Copy the exact name from the S3 Console; the bucket must be the one registered to your username |
+| `AccessDenied` on `ListObjectsV2` or `PutObject` | `S3_BUCKET` has a typo, or the key's IAM user isn't allowed to upload to that bucket | Copy the exact name from the S3 Console; check the IAM user's policy names that bucket |
 | `NoSuchBucket` | Bucket name typo | Copy the name from the S3 Console |
 | `site/index.html not found` | You moved or renamed the `site` folder | Website files must stay in `site/` |
 | Workflow never runs | File is not at `.github/workflows/deploy.yml`, or you committed to another branch | Check the path (leading dot!) and branch `main` |
@@ -124,9 +125,8 @@ Open the failed step and read the red message:
 ## Why keys and not something better?
 
 Real projects use **OIDC** short-lived credentials: GitHub proves who it is to AWS, and no long-lived key is stored anywhere.
-That requires the AWS account owner to register **each** repository in advance. We could not do that for 30 new repositories created today, so this
-workshop uses keys that are **limited to your registered bucket**, **stored only in GitHub Secrets**, and **deactivated right after the event**.
-They are completely separate from the Console password: changing or revoking one never affects the other.
+That requires setting up a trust between your AWS account and **each** repository. Keys are the simpler first step:
+keep them **limited to one bucket**, **stored only in GitHub Secrets**, and **deleted when you're done**. Then try OIDC as your next project.
 
 **Never** commit keys to a repository: bots scan public GitHub for leaked keys within minutes.
 

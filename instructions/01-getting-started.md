@@ -11,29 +11,27 @@ By the end of this phase you can say:
 
 ---
 
-## 1. Get your credential card
+## 1. Get your sign-in details
 
-A facilitator will hand you a **private card** (paper or a private message). It contains:
+The instructor shows these on the screen:
 
-| On your card | Example | What it is |
+| On the slide | Example | What it is |
 |---|---|---|
-| Seat | `07` | Your seat number for today |
 | Sign-in URL | `https://<account>.signin.aws.amazon.com/console` | The special sign-in page for the workshop account |
 | IAM username | `workshop-user-07` | **Your** AWS username for today |
-| Password | *(announced by the instructor)* | The same workshop password for everyone. It is not printed on the card |
+| Password | *(shown by the instructor)* | The same workshop password for everyone |
 | Region | `ap-southeast-1` | Asia Pacific (Singapore) |
-| Bucket tags | `workshop-id` / `workshop-owner` | Two tags you add when you create your bucket in Phase 4 |
 
-> 🔒 **Use only the username on your own card.** Everyone shares one password today, so the username is what tells AWS who you are.
+> 🔒 **Use only the username you were given.** Everyone shares one password today, so the username is what tells AWS who you are.
 > Signing in as a classmate is not allowed, and AWS logs every action under the username that did it.
-> Don't post the password or a photo of the card. The workshop staff will never ask you to type the password for them.
+> Don't post the password or a photo of the slide. The workshop staff will never ask you to type the password for them.
 
 ## 2. Sign in to the AWS Console
 
-1. Open the **Sign-in URL** from your card in your browser (Chrome, Edge or Firefox).
+1. Open the **Sign-in URL** from the slide in your browser (Chrome, Edge or Firefox).
    - Use this exact link. Do **not** go to aws.amazon.com and click "Sign in". That page is for root users.
 2. Check that **Account ID or alias** is already filled in.
-3. Type your **IAM username** from the card, for example `workshop-user-07`.
+3. Type **your** IAM username, for example `workshop-user-07`.
 4. Type the **workshop password** exactly as the instructor shows it. It is case-sensitive.
 5. Click **Sign in**.
 6. You will normally **not** be asked to change the password today. If the instructor enabled it and you see **"You must change your password"**:
@@ -86,7 +84,7 @@ You will create your own copy on GitHub in Phase 2. For now, just look at the fi
 ## Stuck?
 
 - **"Your authentication information is incorrect"**: check the username (`workshop-user-07`: hyphens, two-digit seat number, all lowercase) and retype the password. Pasting can add a hidden space.
-- **The page asks for an email address**: you are on the root-user page. Use the sign-in URL from your card.
+- **The page asks for an email address**: you are on the root-user page. Use the sign-in URL from the slide.
 - **Anything else**: raise your hand. More help: [TROUBLESHOOTING.md](../TROUBLESHOOTING.md).
 
 ➡️ Next: [Phase 2 - Git and GitHub](02-git-and-github.md)

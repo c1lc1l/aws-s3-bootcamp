@@ -2,34 +2,23 @@
 
 **Goal:** put your website on the internet using an S3 bucket with static website hosting.
 
-This phase has **two parts**, because the workshop has to *register* your bucket before you can set it up:
-
-| Part | When | You do |
-|---|---|---|
-| **A. Create your bucket** | just before the break (~10 min) | Steps 1–7 |
-| *(registration)* | during the break | the instructor's system checks your bucket and registers it to you |
-| **B. Make it a website** | after the break (~45 min) | Steps 8–15 |
-
 By the end of this phase you can say:
 
 - [ ] I created my own bucket in **Asia Pacific (Singapore)** with a name I chose.
-- [ ] My bucket carries my two ownership tags and is **registered** to me.
 - [ ] Static website hosting is on, with `index.html` as the index document.
 - [ ] My bucket allows **public read** through a bucket policy, and nothing more.
 - [ ] My HTML, CSS, JS and images load from the **Bucket website endpoint** in a private/incognito window.
 
-Have ready: your credential card, the workshop password (announced by the instructor), and the **contents** of your `site/` folder.
+Have ready: your username, the sign-in URL and workshop password (on the instructor's slide), and the **contents** of your `site/` folder.
 Get them from your repository with **Code → Download ZIP → Extract**.
 
 ---
 
-# Part A - Create your bucket
-
 ## Step 1 - Sign in
 
-Open the **sign-in URL** from your card. Sign in as **your** username, for example `workshop-user-07`, with the workshop password.
+Open the **sign-in URL** from the instructor's slide. Sign in as **your** username, for example `workshop-user-07`, with the workshop password.
 
-> 🔒 Everyone has the same password today, so **only ever use the username on your own card.**
+> 🔒 Everyone has the same password today, so **only ever use the username you were given.**
 > Signing in as a classmate is not allowed, and every action is logged under the username that did it.
 
 ## Step 2 - Select Asia Pacific (Singapore)
@@ -40,8 +29,8 @@ Top-right Region menu → **Asia Pacific (Singapore) ap-southeast-1**.
 
 Type **S3** in the search bar at the top → click **S3** under *Services*.
 
-> You may see other buckets in the list, and boxes that say *"Insufficient permissions"*.
-> That is expected. You can see bucket names, but you can only open and change **your own registered** bucket.
+> You will see your classmates' buckets in the list too, and a few instructor buckets that say *"Access Denied"*.
+> **Only ever open and change your own bucket.** AWS lets you see the others today, but every action is logged under your username.
 
 ## Step 4 - Create a general purpose bucket
 
@@ -74,64 +63,27 @@ my-first-cloud-portfolio      juan-delacruz-website      aws-bootcamp-project-20
 | Setting | Choose |
 |---|---|
 | **Object Ownership** | **ACLs disabled (recommended)**. Leave as is |
-| **Block Public Access settings** | **Leave "Block *all* public access" CHECKED for now.** You will change it in Step 9, after registration |
+| **Block Public Access settings** | **Leave "Block *all* public access" CHECKED for now.** You will change it in Step 8 |
 | **Bucket Versioning** | **Disable**. Leave as is |
 | **Default encryption** | **SSE-S3** (Amazon S3 managed keys). Leave as is |
 | **Advanced settings → Object Lock** | **Disable**. Leave as is |
 
-## Step 7 - Add your two ownership tags, then create
+## Step 7 - Create the bucket
 
-Scroll to **Tags - optional** → **Add new tag** twice. Copy the values **exactly** from your card:
-
-| Key | Value |
-|---|---|
-| `workshop-id` | `pcu26-s3-bootcamp-2026-11-19` |
-| `workshop-owner` | your username, e.g. `workshop-user-07` |
-
-Then click **Create bucket** at the bottom.
+Leave **Tags** empty (no tags are needed today) and click **Create bucket** at the bottom.
 
 ✅ A green banner says your bucket was created. **Write your bucket name down.** You need it for the rest of today.
 
-> ℹ️ You will also see two **red** messages: *"Insufficient permissions to apply Default Encryption"* and *"Insufficient permissions to list objects"*.
-> **Both are expected. Ignore them.** Your bucket is already encrypted (SSE-S3 is automatic), and you can't list objects until your bucket is registered.
+> ℹ️ You may also see a **red** message: *"Insufficient permissions to apply Default Encryption"*.
+> **That is expected. Ignore it.** Your bucket is already encrypted (SSE-S3 is automatic).
 
 > ❌ **"Access Denied" when you click Create bucket?** Nothing was created, so fix it and click Create again:
-> - a tag key or value has a typo, a capital letter or an extra space, or
-> - `workshop-owner` is not **your** username, or
-> - you added a third tag (only these two are allowed), or
-> - the Region is not Singapore.
+> - the Region is not Singapore (Step 2), or
+> - you added tags: remove them.
 
-### Why the tags?
+Your bucket works straight away. Click its name to open it and continue.
 
-The tags say *"this bucket belongs to workshop-user-07"*. AWS checks them on every action, which is called **attribute-based access control (ABAC)**. You can only manage buckets tagged with your own username, and nobody can change the tags once your bucket is registered.
-
----
-
-# ⏳ Registration (happens during the break)
-
-The instructor's system looks up **who really created** each new bucket in AWS's activity log (CloudTrail) and compares it with the tags. If they match, it **registers** the bucket: it adds a third tag and switches on ABAC. This normally takes **5–15 minutes**. The projector shows a list such as:
-
-```text
-REGISTERED   seat 07  my-first-cloud-portfolio
-PENDING      seat 12  aws-bootcamp-project-2026   waiting for CloudTrail...
-```
-
-**How to check it yourself:** open your bucket → **Properties** tab.
-- Lots of *"You don't have permissions"* / *"Insufficient permissions"* messages → **not registered yet**. Wait, and don't create more buckets.
-- Normal settings with no red errors → **registered**. Continue with Part B. 🎉
-
-> Still not registered after 15 minutes? Tell a facilitator your **seat number and bucket name**.
-> Never create a second bucket "just in case": only your first two buckets can be registered.
-
----
-
-# Part B - Make it a website
-
-## Step 8 - Sign back in if needed
-
-Same username, same password. Region: Singapore. Open **S3** → click **your** bucket.
-
-## Step 9 - Allow a public bucket policy (Block Public Access)
+## Step 8 - Allow a public bucket policy (Block Public Access)
 
 S3 has four **Block Public Access** switches. They are safety locks that override everything else:
 
@@ -148,7 +100,7 @@ S3 has four **Block Public Access** switches. They are safety locks that overrid
 
 > Making something public is a **deliberate** decision. Only ever do it for content that is *meant* for everyone, like this portfolio.
 
-## Step 10 - Enable static website hosting
+## Step 9 - Enable static website hosting
 
 1. **Properties** tab → scroll to the **very bottom**: **Static website hosting** → **Edit**.
 2. **Static website hosting**: **Enable**. **Hosting type**: **Host a static website**.
@@ -159,7 +111,7 @@ At the bottom of **Properties** you now see a **Bucket website endpoint**, for e
 `http://my-first-cloud-portfolio.s3-website-ap-southeast-1.amazonaws.com`.
 Clicking it now shows **403 Forbidden**. That is correct, because the bucket is not readable yet.
 
-## Step 11 - Allow public read with a bucket policy
+## Step 10 - Allow public read with a bucket policy
 
 1. **Permissions** tab → **Bucket policy** → **Edit**.
 2. Copy the **Bucket ARN** shown above the editor, e.g. `arn:aws:s3:::my-first-cloud-portfolio`.
@@ -186,7 +138,6 @@ Clicking it now shows **403 Forbidden**. That is correct, because the bucket is 
 `Action: s3:GetObject` *read (download) files* · `Resource: …/*` *only the files inside this bucket*. Nobody may upload, delete or change anything.
 
 > ⚠️ Use **exactly** this policy. Never add `s3:PutObject`, `s3:*`, or other people's names: strangers could then upload files to your bucket.
-> The instructor runs an automatic audit, and policies that grant more than public read are removed.
 
 <details>
 <summary>Error: "Policy has invalid resource"</summary>
@@ -197,10 +148,10 @@ The bucket name in `Resource` doesn't match your bucket exactly, or the `/*` is 
 <details>
 <summary>Error: "Access denied" when saving the policy</summary>
 
-Either Block Public Access settings 3 and 4 are still ON (redo Step 9), or your bucket is **not registered yet** (see Registration above).
+Block Public Access settings 3 and 4 are still ON: redo Step 8.
 </details>
 
-## Step 12 - Upload your website files correctly
+## Step 11 - Upload your website files correctly
 
 1. **Objects** tab → **Upload**.
 2. Open your local `site` folder and **select everything inside it**: `index.html`, `style.css`, `script.js` and the `assets` folder.
@@ -216,14 +167,14 @@ assets/
 
 If you see `site/` at the top, open it, select everything, then use **Actions → Move** to the bucket root. Or delete it and upload the **contents** again.
 
-## Step 13 - Open your website endpoint
+## Step 12 - Open your website endpoint
 
 **Properties** tab → bottom → **Bucket website endpoint** → click the link.
 
 > 🔓 S3 website endpoints use **`http://`**, not `https://`. Your browser may say *"Not secure"*. That is normal for this endpoint.
 > Production sites add HTTPS with **Amazon CloudFront** or **AWS Amplify Hosting**.
 
-## Step 14 - Verify everything loads
+## Step 13 - Verify everything loads
 
 1. Open the endpoint in a **private / incognito window**. That is how a stranger sees it.
 2. Check: text (**HTML**) · colours and layout (**CSS**) · dark-mode and fun-fact buttons (**JavaScript**) · photos (**images**).
@@ -232,16 +183,16 @@ If you see `site/` at the top, open it, select everything, then use **Actions �
 
 🎉 **Your website is live on AWS!** Copy the endpoint URL for the showcase.
 
-## Step 15 - Fix common errors
+## Step 14 - Fix common errors
 
 | What you see | Most likely cause | Fix |
 |---|---|---|
-| *Access Denied* on **Create bucket** | Tag typo, wrong owner tag, extra tag, or Region not Singapore | Step 7 / Step 2 |
+| *Access Denied* on **Create bucket** | Region not Singapore, or you added tags | Step 2 / Step 7 |
 | *Bucket with the same name already exists* | Name taken by someone, somewhere in the world | Choose another name |
-| *Insufficient permissions* everywhere inside your bucket | Not registered yet | Wait; after 15 min tell a facilitator |
-| **403 Forbidden** on the endpoint | Bucket policy missing/wrong, or Block Public Access 3/4 still ON | Steps 9 and 11 |
-| **404 Not Found - NoSuchKey** | No `index.html` at the bucket root | Step 12; the name must be exactly `index.html` |
-| **404 - NoSuchWebsiteConfiguration** | Static website hosting not enabled | Step 10 |
+| *Access Denied* inside a bucket | It is an instructor bucket, not yours | Open **your** bucket (Step 7 name) |
+| **403 Forbidden** on the endpoint | Bucket policy missing/wrong, or Block Public Access 3/4 still ON | Steps 8 and 10 |
+| **404 Not Found - NoSuchKey** | No `index.html` at the bucket root | Step 11; the name must be exactly `index.html` |
+| **404 - NoSuchWebsiteConfiguration** | Static website hosting not enabled | Step 9 |
 | Text but **no colours/layout** | `style.css` missing or in the wrong folder | It must sit next to `index.html` |
 | **Images broken** | Wrong path or case (`Me.JPG` vs `me.jpg`) | Match the file name in `assets/` exactly |
 | You still see the **old version** | Browser cache | **Ctrl+F5**, or a new incognito window |
